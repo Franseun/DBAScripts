@@ -1,0 +1,153 @@
+#TASK: To build a survival adventure text game
+#Title: Ship Capsize – My Survival Story Adventure
+#Author: Seun Ajayi
+
+import time #Imports a module to add a pause
+
+#Figuring out how users might respond
+answer_A = ["A", "a"]
+answer_B = ["B", "b"]
+answer_C = ["C", "c"]
+yes = ["Y", "y", "yes"]
+no = ["N", "n", "no"]
+
+#Grabbing objects
+sword = 0
+bow_arrow = 0
+
+required = ("\nUse only A, B, or C\n") #Cutting down on duplication
+
+#The story is broken into sections, starting with "intro"
+def intro():
+  print ("You found yourself shipwrecked and lost, not by choice, " 
+  "on what is believed to be a tropical deserted island. As you "
+  "start exploring and discovering the strange Island, you find "
+  "great treasures, forage resources, building materials and items "
+  "that you need to gather, craft, build or harvest to protect "
+  "yourself against the unfamiliar environment and the dangerous "
+  "episodes awaiting you. What are you going to do ?:")
+  time.sleep(1)
+  print ("""  A. Forage resources to survive; build a base, Craft weapons and tools.
+  B. Accept your fate, give up and wait for a miracle.
+  C. Walk around the mysterious island with the hope to find ancient villages and buildings, left behind by either wayward settlers or scum.""")
+  choice = input(">>> ") #Here is your first choice.
+  if choice in answer_A:
+    option_forage()
+  elif choice in answer_B:
+    print ("\nWelp, that was quick. "
+    "\n\nYou died!")
+  elif choice in answer_C:
+    option_town()
+  else:
+    print (required)
+    intro()
+
+def option_forage(): 
+  print ("\nAs you progress and craft the needed tools, you slowly uncover the map, "
+  "the monument, valley, the stars, the mountain and the treasures of the islands. "
+  "You are attacked by some group of islanders. What are you going to do ?:")
+  time.sleep(1)
+  print ("""  A. You are outnumbered; fight back and hope for luck to defeat them.
+  B. Pretend dead; Lie down and wait to be mauled
+  C. Run to a nearby cave to hide""")
+  choice = input(">>> ")
+  if choice in answer_A:
+    option_hope()
+  elif choice in answer_B:
+    print ("\nYou were so scared, shivering. "
+    "You were discovered by one of the attackers, "
+    "he stroke you as hard as he could with his sword. \n\nYou died!")
+  elif choice in answer_C:
+    option_cave()
+  else:
+    print (required)
+    option_forage()
+
+def option_cave():
+  print ("\nYou were hesitant, since the cave was dark and "
+  "ominous. Before you fully enter, you notice a shiny sword on "
+  "the ground. Do you pick up a sword. Y/N ?")
+  choice = input(">>> ")
+  if choice in yes:
+    sword = 1 #adds a sword
+  else:
+    sword = 0
+  print ("\nWhat do you do next?")
+  time.sleep(1)
+  print ("""  A. Hide in silence
+  B. Fight
+  C. Run""")
+  choice = input(">>> ")
+  if choice in answer_A:
+    print ("\nReally? You're going to hide in the cave? I think "
+    "the Islanders in your pursuit are more familiar with the caves, right? Not sure, but "
+    "I'm going with YES, so...\n\nYou died!")
+  elif choice in answer_B:
+   if sword > 0:
+    print ("\nYou laid in wait. The shimmering sword attracted "
+    "the two attackers in your pursuit, splitted up to cover more grounds "
+    "as they thought you were no match to either of them. As they come "
+    "closer and closer, your heart beat rapidly. As one of them "
+    "reached out to grab the sword, you pierced the blade into "
+    "his chest, then lured the second attacker into a corner and stabbed him in the back. \n\nYou survived!")
+   else: #If the user didn't grab the sword
+     print ("\nYou should have picked up that sword. You're "
+     "defenseless. \n\nYou died!")
+  elif choice in answer_C:
+    print ("As the two attackers enters the dark cave, you sliently "
+    "sneak out. You're several feet away, but the attackers turns "
+    "around and sees you running.")
+    option_hope()
+  else:
+    print (required)
+    option_cave()
+
+def option_hope():
+  print ("\nYou decided to fight as hard as you could, but couldn’t just handle them all. You are overwhelmed. "
+  "You decided to run for it as quickly as possible, but the two attacker's "
+  "speed is too great. You will:")
+  time.sleep(1)
+  print ("""  A. Hide behind boulder
+  B. Trapped, so you fight again
+  C. Run towards an abandoned town""")
+  choice = input(">>> ")
+  if choice in answer_A:
+    print ("You're easily spotted. "
+    "\n\nYou died!")
+  elif choice in answer_B:
+    print ("\nYou're no match for the two attackers. "
+    "\n\nYou died!")
+  elif choice in answer_C:
+    option_town()
+  else:
+    print (required)
+    option_hope()
+    
+def option_town():
+  print ("\nYou were discovered by the attacking Islanders, "
+  "While frantically running, you notice a rusted "
+  "sword lying in the mud. You quickly reach down and grab it, "
+  "but miss. You try to calm your heavy breathing as you hide "
+  "behind a delapitated building, waiting for the two attackers to come "
+  "charging around the corner. You notice a bow and arrow "
+  "near your foot, though you don't know how to use it. Do you pick it up? Y/N")
+  choice = input(">>> ")
+  if choice in yes:
+    bow_arrow = 1 #adds a bow and arrow
+  else:
+    bow_arrow = 0
+  print ("You hear their light footsteps and ready yourself for "
+  "the impending attackers.")
+  time.sleep(1)
+  if bow_arrow > 0:
+    print ("\nYou quickly draw out the arrow, somehow "
+    "hoping you will shoot a good spot on the attackers. "
+    "Luckily you shot the first attacker in the heart, then "
+    "you draw another arrow and shot the second attacker in the eye "
+    "then jump on him to finish him off! you defeated the two attackers. "
+    "\n\nYour heart was pounding so fast, but you survived!")
+  else: #If the user didn't grab the sword
+     print ("\nMaybe you should have picked up the bow and arrow. "
+     "\n\nYou died!")
+
+intro()
